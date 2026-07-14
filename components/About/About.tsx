@@ -1,62 +1,110 @@
 import Image from "next/image";
-import { Home, MapPin, ShoppingBag } from "lucide-react";
+import { Truck, PackageCheck, Smile } from "lucide-react";
 
 export default function About() {
+  const features = [
+    {
+      name: "توصيل سريع وموثوق",
+      description: "نضمن وصول طلباتك إلى باب بيتك في أسرع وقت وبأفضل حالة.",
+      icon: Truck,
+      color: "from-blue-500 to-cyan-500",
+    },
+    {
+      name: "جودة لا تضاهى",
+      description: "ننتقي لك أفضل المنتجات الطازجة والمستوردة لضمان رضاك الكامل.",
+      icon: PackageCheck,
+      color: "from-emerald-500 to-teal-500",
+    },
+    {
+      name: "تجربة تسوق ممتعة",
+      description: "تجربة سهلة ومريحة من الطلب حتى الاستلام، لأن راحتك تهمنا.",
+      icon: Smile,
+      color: "from-orange-500 to-pink-500",
+    },
+  ];
+
   return (
-    <main className="mx-auto flex min-h-screen w-10/12 items-center justify-center px-2 py-10 sm:px-4 md:px-6 lg:px-8">
-      <section className="grid w-full gap-8 rounded-[2rem] border border-green-100 bg-gradient-to-br from-green-50 via-white to-emerald-100 p-6 shadow-[0_20px_60px_-20px_rgba(22,101,52,0.35)] md:grid-cols-[1.05fr_0.95fr] md:p-8 lg:p-10">
-        <div className="flex flex-col justify-center gap-5">
-          <div className="flex items-center gap-2 self-start rounded-full bg-green-600/10 px-3 py-1 text-sm font-semibold text-green-700">
-            <ShoppingBag className="h-4 w-4" />
-            <span>خدمات البيت والبقالة</span>
-          </div>
+    <main id="About" className="py-20 sm:py-32 bg-gradient-to-b from-white via-slate-50 to-emerald-50">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16 sm:mb-20">
+          <p className="text-sm font-semibold leading-6 text-emerald-600 uppercase tracking-widest">
+            من نحن
+          </p>
+          <h1 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900">
+            تعرف على <span className="bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-transparent">فريدو</span>
+          </h1>
+          <p className="mt-6 text-lg sm:text-xl leading-8 text-slate-600 max-w-2xl mx-auto">
+            سوبر ماركت فريدو يقدم لك كل احتياجاتك اليومية من البقالة والمستلزمات المنزلية مع خدمة سريعة ومريحة من خلال الطلب من البيت.
+          </p>
+        </div>
 
-          <div className="space-y-3">
-            <h1 className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-5xl">
-              تعرف على <span className="text-green-700">فريدو</span>
-            </h1>
-            <p className="text-base leading-8 text-gray-700 sm:text-lg">
-              سوبر ماركت فريدو يقدم لك كل احتياجاتك اليومية من البقالة
-              والمستلزمات المنزلية مع خدمة سريعة ومريحة من خلال الطلب من البيت.
-            </p>
-          </div>
-
-          <div className="rounded-2xl bg-white/80 p-4 shadow-sm ring-1 ring-green-100">
-            <div className="flex items-start gap-3">
-              <div className="rounded-xl bg-green-100 p-2 text-green-700">
-                <Home className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="font-semibold text-gray-900">اطلب من غير ما تنزل من البيت</p>
-                <p className="mt-1 text-sm text-gray-600">
-                  بنوفر لك تجربة تسوق سهلة ومريحة، من المأكولات إلى احتياجات البيت.
-                </p>
-              </div>
+        {/* Main Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
+          {/* Image (now on the left on large screens) */}
+          <div className="flex justify-center lg:justify-start lg:order-last">
+            <div className="relative w-full max-w-md">
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/20 to-blue-400/20 rounded-2xl blur-3xl"></div>
+              <Image
+                src="/images/hero2.png"
+                alt="فريدو سوبر ماركت"
+                className="relative w-full rounded-2xl shadow-2xl ring-1 ring-slate-900/10"
+                width={2432}
+                height={1442}
+              />
             </div>
           </div>
 
-          <div className="flex items-start gap-3 rounded-2xl bg-green-700 p-4 text-white shadow-lg">
-            <MapPin className="mt-0.5 h-5 w-5 shrink-0" />
-            <div>
-              <p className="font-semibold">العنوان</p>
-              <p className="mt-1 text-sm text-green-50">داخل قرية كفر دميره القديم</p>
-            </div>
+          {/* Features (now on the right on large screens) */}
+          <div className="space-y-6 lg:order-first">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <div
+                  key={feature.name}
+                  className="group relative rounded-xl border border-slate-200 bg-white p-6 hover:shadow-lg transition-all duration-300 hover:border-emerald-200"
+                >
+                  {/* Gradient Background on Hover */}
+                  <div className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-5 transition-opacity duration-300 bg-gradient-to-r ${feature.color}`}></div>
+                  
+                  <div className="relative flex gap-4">
+                    {/* Icon */}
+                    <div className={`flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br ${feature.color} text-white shadow-lg`}>
+                      <Icon className="w-6 h-6" />
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-1">
+                      <h3 className="font-bold text-slate-900 text-lg">
+                        {feature.name}
+                      </h3>
+                      <p className="mt-2 text-slate-600 text-sm leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        <div className="flex items-center justify-center">
-          <div className="relative w-full max-w-md overflow-hidden rounded-[1.5rem] bg-white/70 p-3 shadow-inner">
-            <Image
-              src="/images/hero2.png"
-              alt="فريدو سوبر ماركت"
-              width={600}
-              height={600}
-              className="h-auto w-full rounded-[1.2rem] object-cover"
-              priority
-            />
-          </div>
+        {/* Stats Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 pt-20 border-t border-slate-200">
+          {[
+            { number: "1000+", label: "منتج متنوع" },
+            { number: "24/7", label: "خدمة عملاء" },
+            { number: "100%", label: "ضمان الجودة" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-transparent">
+                {stat.number}
+              </div>
+              <p className="mt-2 text-slate-600 font-medium">{stat.label}</p>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
     </main>
   );
 }
