@@ -6,8 +6,8 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-slate-50" id="Contact">
       
-      <main className="mx-auto flex w-11/12 flex-col gap-8 px-2 py-10 sm:px-4 md:px-6 lg:max-w-7xl lg:px-8">
-        <section className="grid gap-8 rounded-[2rem] bg-white p-6 shadow-[0_20px_60px_-20px_rgba(22,101,52,0.2)] md:grid-cols-[0.95fr_1.05fr] md:p-8 lg:p-10">
+      <main className="mx-auto flex w-full flex-col gap-8 px-2 py-10 sm:px-4 md:w-11/12 md:px-6 lg:max-w-7xl lg:px-8">
+        <section className="grid gap-8 md:rounded-[2rem] md:bg-white md:p-6 md:shadow-[0_20px_60px_-20px_rgba(22,101,52,0.2)] md:grid-cols-[0.95fr_1.05fr] md:p-8 lg:p-10">
           <div className="space-y-5">
             <div className="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
               <MessageCircle className="h-4 w-4" />
@@ -48,7 +48,7 @@ export default function Contact() {
             </div>
           </div>
 
-          <form className="space-y-4 rounded-2xl border border-gray-200 bg-gray-50 p-4 sm:p-5">
+          <form className="space-y-4 md:rounded-2xl md:border md:border-gray-200 md:bg-gray-50 md:p-4 sm:p-5">
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-800">الاسم</label>
               <input
