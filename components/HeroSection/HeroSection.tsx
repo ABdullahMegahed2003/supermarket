@@ -60,45 +60,34 @@ const featureItems = [
 
 export default function HeroSection() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const transitionTimeoutRef = useRef<number | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false); // Re-add for smooth transitions
 
-  const goToSlide = (nextSlide: number) => {
-    if (transitionTimeoutRef.current) {
-      window.clearTimeout(transitionTimeoutRef.current);
-    }
-
+  const changeSlide = (slideIndex: number) => {
     setIsTransitioning(true);
-
-    transitionTimeoutRef.current = window.setTimeout(() => {
-      setActiveSlide(nextSlide);
+    setTimeout(() => {
+      setActiveSlide(slideIndex);
       setIsTransitioning(false);
-      transitionTimeoutRef.current = null;
-    }, 280);
+    }, 300); // Match transition duration
   };
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
-      goToSlide((activeSlide + 1) % heroSlides.length);
+      changeSlide((activeSlide + 1) % heroSlides.length);
     }, 6000);
 
     return () => {
       window.clearInterval(intervalId);
-
-      if (transitionTimeoutRef.current) {
-        window.clearTimeout(transitionTimeoutRef.current);
-      }
     };
   }, [activeSlide]);
 
   const goToPreviousSlide = () => {
-    goToSlide(
+    changeSlide(
       activeSlide === 0 ? heroSlides.length - 1 : activeSlide - 1
     );
   };
 
   const goToNextSlide = () => {
-    goToSlide((activeSlide + 1) % heroSlides.length);
+    changeSlide((activeSlide + 1) % heroSlides.length);
   };
 
   const activeContent = heroSlides[activeSlide];
@@ -108,7 +97,7 @@ export default function HeroSection() {
       <section className="flex h-full min-h-0 w-full flex-col overflow-hidden rounded-[2rem] bg-gradient-to-br from-emerald-50 via-green-100 to-lime-50 shadow-lg">
         <div className="flex h-full min-h-0 flex-col px-4 py-4 sm:px-6 lg:px-10 lg:py-5">
           <div
-            className={`grid flex-1 min-h-0 items-center gap-5 transition-all duration-300 ease-out lg:grid-cols-[1.1fr_0.9fr] ${
+            className={`grid flex-1 min-h-0 items-center gap-5 transition-opacity duration-300 ease-out lg:grid-cols-[1.1fr_0.9fr] ${
               isTransitioning ? "opacity-0 scale-[0.985]" : "opacity-100 scale-100"
             }`}
           >
@@ -140,6 +129,7 @@ export default function HeroSection() {
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-contain drop-shadow-2xl"
+                  priority={activeSlide === 0}
                   loading={activeSlide === 0 ? "eager" : "lazy"}
                 />
               </div>
@@ -175,7 +165,7 @@ export default function HeroSection() {
                 <button
                   key={slide.id}
                   type="button"
-                  onClick={() => setActiveSlide(index)}
+                  onClick={() => changeSlide(index)}
                   aria-label={`انتقل إلى السلايد ${index + 1}`}
                   className={`h-2.5 rounded-full transition-all ${
                     index === activeSlide
@@ -191,7 +181,7 @@ export default function HeroSection() {
                 type="button"
                 onClick={goToPreviousSlide}
                 aria-label="السلايد السابق"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-emerald-200 bg-white/80 text-emerald-900 transition hover:bg-white"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-emerald-200 bg-white/80 text-emerald-900 transition hover:bg-white"
               >
                 <FiChevronRight className="text-lg" />
               </button>
@@ -199,7 +189,7 @@ export default function HeroSection() {
                 type="button"
                 onClick={goToNextSlide}
                 aria-label="السلايد التالي"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-emerald-200 bg-white/80 text-emerald-900 transition hover:bg-white"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-emerald-200 bg-white/80 text-emerald-900 transition hover:bg-white"
               >
                 <FiChevronLeft className="text-lg" />
               </button>

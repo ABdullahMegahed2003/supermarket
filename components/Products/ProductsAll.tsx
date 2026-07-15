@@ -87,6 +87,7 @@ export default function ProductsAll(){
                   alt={product.title}
                   fill
                   sizes="(max-width: 1024px) 100vw, 33vw"
+                  loading="lazy"
                   className="object-cover"
                 />
               </div>

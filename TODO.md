@@ -1,6 +1,8 @@
 # TODO
-- [ ] فهم منطق الخريطة الحالية (MapPicker/MapCenter) ومكان تطبيق center/zoom/bounds.
-- [x] تحديث `MapPicker` ليعكس مركز طلخا مع zoom مناسب بدل كفر دميرة القديم (center + bounds + defaultPosition).
 
-- [ ] التأكد أن `MapCenter` يظل يرسل الإحداثيات والعنوان بشكل صحيح بدون كسر التسجيل.
-- [ ] تشغيل/build أو مراجعة سريعة للتأكد أن الخريطة لا تزال تعمل داخل صفحة التسجيل.
+- [x] Update HeroSection LCP stability (create interval once, avoid effect re-run; make initial slide image `priority` + eager).
+
+- [ ] Re-run Lighthouse in Incognito for `/` and compare LCP element/timings.
+- [ ] If TBT/SI still high, optimize Nav localStorage usage in `components/NavBar/Nav.tsx`.
+- [ ] Keep running Lighthouse until performance passes targeted thresholds.
+

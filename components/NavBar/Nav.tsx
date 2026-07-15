@@ -106,8 +106,7 @@ export default function Nav() {
           <button
             type="button"
             className="p-2 hover:bg-gray-100 rounded-md transition"
-
-            aria-label="السلة"
+            aria-label="الانتقال إلى سلة التسوق"
           >
            <Link href="/Cart">
            
@@ -119,7 +118,7 @@ export default function Nav() {
               <button
                 type="button"
                 className="p-2 hover:bg-gray-100 rounded-md transition"
-                aria-label="المفضلة"
+                aria-label="الانتقال إلى المفضلة"
               >
                 <FaHeart className="text-lg md:text-xl text-red-600" />
               </button>
@@ -130,7 +129,7 @@ export default function Nav() {
           <button
             type="button"
             className="p-2 hover:bg-gray-100 rounded-md transition"
-            aria-label="المفضلة"
+            aria-label="الانتقال إلى المفضلة"
             >
             <FiHeart className="text-lg md:text-xl" />
           </button>

@@ -39,20 +39,14 @@ export default function About() {
           </p>
         </div>
 
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
-          {/* Image (now on the left on large screens) */}
-          <div className="flex justify-center lg:justify-start lg:order-last">
-            <div className="relative w-full max-w-md">
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/20 to-blue-400/20 rounded-2xl blur-3xl"></div>
-              <Image
-                src="/images/hero2.png"
-                alt="فريدو سوبر ماركت"
-                className="relative w-full rounded-2xl shadow-2xl ring-1 ring-slate-900/10"
-                width={2432}
-                height={1442}
-              />
-            </div>
+          <div className="space-y-3">
+            <h1 className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-5xl">
+              تعرف على <span className="text-green-700">فريدو</span>
+            </h1>
+            <p className="text-base leading-8 text-gray-700 sm:text-lg">
+              سوبر ماركت فريدو يقدم لك كل احتياجاتك اليومية من البقالة
+              والمستلزمات المنزلية مع خدمة سريعة ومريحة من خلال الطلب من البيت.
+            </p>
           </div>
 
           {/* Features (now on the right on large screens) */}
