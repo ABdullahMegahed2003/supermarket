@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Truck, PackageCheck, Smile } from "lucide-react";
+import Nav from "../NavBar/Nav";
 
 export default function About() {
   const features = [
@@ -24,7 +25,9 @@ export default function About() {
   ];
 
   return (
-    <main id="About" className="py-20 sm:py-32 bg-gradient-to-b from-white via-slate-50 to-emerald-50">
+    <>
+      <Nav />
+      <main id="About" className="pt-20 sm:pt-32 pb-20 sm:pb-32 bg-gradient-to-b from-white via-slate-50 to-emerald-50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 sm:mb-20">
@@ -39,18 +42,9 @@ export default function About() {
           </p>
         </div>
 
-          <div className="space-y-3">
-            <h1 className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-5xl">
-              تعرف على <span className="text-green-700">فريدو</span>
-            </h1>
-            <p className="text-base leading-8 text-gray-700 sm:text-lg">
-              سوبر ماركت فريدو يقدم لك كل احتياجاتك اليومية من البقالة
-              والمستلزمات المنزلية مع خدمة سريعة ومريحة من خلال الطلب من البيت.
-            </p>
-          </div>
-
-          {/* Features (now on the right on large screens) */}
-          <div className="space-y-6 lg:order-first">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-16">
+          {/* Features */}
+          <div className="space-y-6">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
@@ -99,6 +93,7 @@ export default function About() {
           ))}
         </div>
       </div>
-    </main>
+      </main>
+    </>
   );
 }

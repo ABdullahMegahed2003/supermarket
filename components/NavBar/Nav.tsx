@@ -166,16 +166,18 @@ export default function Nav() {
 
               return (
                 <li key={item.label}>
-                  <button
-                    type="button"
-                    onClick={() => setIsOpen(false)}
-                    className="w-full flex items-center gap-3 py-3 px-3 hover:bg-gray-100 rounded-xl cursor-pointer border border-gray-100"
-                  >
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50">
-                      <Icon className="text-lg text-green-800" />
-                    </span>
-                    <span className="text-sm text-right">{item.label}</span>
-                  </button>
+                  <Link href={item.link}>
+                    <button
+                      type="button"
+                      onClick={() => setIsOpen(false)}
+                      className="w-full flex items-center gap-3 py-3 px-3 hover:bg-gray-100 rounded-xl cursor-pointer border border-gray-100"
+                    >
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50">
+                        <Icon className="text-lg text-green-800" />
+                      </span>
+                      <span className="text-sm text-right">{item.label}</span>
+                    </button>
+                  </Link>
                 </li>
               );
             })}

@@ -5,7 +5,7 @@ import { Clock3, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 export default function Contact() {
   return (
     <div className="min-h-screen bg-slate-50" id="Contact">
-      
+      <Nav />
       <main className="mx-auto flex w-full flex-col gap-8 px-2 py-10 sm:px-4 md:w-11/12 md:px-6 lg:max-w-7xl lg:px-8">
         <section className="grid gap-8 md:rounded-[2rem] md:bg-white md:p-6 md:shadow-[0_20px_60px_-20px_rgba(22,101,52,0.2)] md:grid-cols-[0.95fr_1.05fr] md:p-8 lg:p-10">
           <div className="space-y-5">
@@ -74,7 +74,7 @@ export default function Contact() {
               />
             </div>
             <button
-              type="button"
+              type="submit"
               className="flex items-center justify-center gap-2 rounded-xl bg-green-700 px-4 py-3 text-sm font-semibold text-white transition hover:bg-green-800"
             >
               <Send className="h-4 w-4" />
