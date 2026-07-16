@@ -26,7 +26,7 @@ export default function About() {
 
   return (
     <>
-      <Nav />
+      
       <main id="About" className="pt-20 sm:pt-32 pb-20 sm:pb-32 bg-gradient-to-b from-white via-slate-50 to-emerald-50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
