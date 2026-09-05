@@ -5,6 +5,7 @@ import CartContext from "@/store/idproductsReducer";
 import Footer from "@/components/Footer/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://supermarket-hazel.vercel.app"),
   title: {
     default: "فريدو | سوبر ماركت إلكتروني للأطعمة والمنتجات اليومية",
     template: "%s | فريدو",
@@ -19,9 +20,14 @@ export const metadata: Metadata = {
     "ألبان",
     "مخبوزات",
     "مشروبات",
+    "سوبر ماركت كفر دميره القديم",
+    "سوبر ماركت اونلاين كفر دميره",
+    "توصيل بقالة كفر دميره",
+    "سوبر ماركت فريدو",
+    
   ],
   alternates: {
-    canonical: "https://fredo-store.com",
+    canonical: "/",
   },
   openGraph: {
     title: "فريدو | سوبر ماركت إلكتروني",
