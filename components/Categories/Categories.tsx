@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getCategoryIcon, getStoredCategories, type CategoryItem } from "@/lib/categories";
@@ -31,7 +32,16 @@ export default function Categories() {
                     return (
                         <Link key={category.id} href={`/categories/${encodeURIComponent(category.name)}`} className="group flex flex-col justify-center items-center gap-3 p-4 sm:p-0 sm:gap-4 w-full sm:max-w-[240px] h-48 sm:h-60 bg-white shadow-sm border border-slate-100 rounded-[2rem] transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:border-emerald-200 cursor-pointer">
                             {category.image ? (
-                                <img src={category.image} alt={category.name} className="h-20 w-20 sm:h-28 sm:w-28 rounded-2xl object-cover" />
+                                <div className="relative h-20 w-20 overflow-hidden rounded-2xl sm:h-28 sm:w-28">
+                                    <Image
+                                        src={category.image}
+                                        alt={category.name}
+                                        fill
+                                        sizes="(max-width: 640px) 80px, 112px"
+                                        loading="lazy"
+                                        className="object-cover"
+                                    />
+                                </div>
                             ) : (
                                 <div className="inline-flex h-20 w-20 sm:h-28 sm:w-28 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
                                     <Icon className="w-10 h-10 sm:w-14 sm:h-14" />

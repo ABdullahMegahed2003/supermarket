@@ -1,8 +1,28 @@
-import Link from "next/link";
-import Nav from "@/components/NavBar/Nav";
+"use client";
+
 import { Clock3, MapPin, MessageCircle, Phone, Send } from "lucide-react";
+import { FormEvent, useState } from "react";
 
 export default function Contact() {
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+
+    const whatsappNumber = "";
+
+    if (!whatsappNumber) {
+      return;
+    }
+
+    const text = `السلام عليكم، اسمي ${name || "مستخدم"}.\n\n${message}`.trim();
+
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div className="min-h-screen bg-slate-50" id="Contact">
       
@@ -28,7 +48,7 @@ export default function Contact() {
                 <Phone className="mt-0.5 h-5 w-5 text-green-700" />
                 <div>
                   <p className="font-semibold text-gray-900">الهاتف</p>
-                  <p className="text-sm text-gray-700">0100 000 0000</p>
+                  <p className="text-sm text-gray-700">قريباً</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -48,20 +68,17 @@ export default function Contact() {
             </div>
           </div>
 
-          <form className="space-y-4 md:rounded-2xl md:border md:border-gray-200 md:bg-gray-50 md:p-4 sm:p-5">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-4 md:rounded-2xl md:border md:border-gray-200 md:bg-gray-50 md:p-4 sm:p-5"
+          >
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-800">الاسم</label>
               <input
                 type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="اكتب اسمك"
-                className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none ring-0 focus:border-green-500"
-              />
-            </div>
-            <div>
-              <label className="mb-2 block text-sm font-semibold text-gray-800">البريد الإلكتروني</label>
-              <input
-                type="email"
-                placeholder="example@email.com"
                 className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none ring-0 focus:border-green-500"
               />
             </div>
@@ -69,6 +86,8 @@ export default function Contact() {
               <label className="mb-2 block text-sm font-semibold text-gray-800">الرسالة</label>
               <textarea
                 rows={5}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 placeholder="اكتب رسالتك هنا..."
                 className="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none ring-0 focus:border-green-500"
               />
@@ -78,7 +97,7 @@ export default function Contact() {
               className="flex items-center justify-center gap-2 rounded-xl bg-green-700 px-4 py-3 text-sm font-semibold text-white transition hover:bg-green-800"
             >
               <Send className="h-4 w-4" />
-              <span>إرسال الرسالة</span>
+              <span>إرسال على الواتساب</span>
             </button>
           </form>
         </section>

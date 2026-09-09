@@ -33,8 +33,6 @@ export default function SingleProduct({ id }: Props) {
 
   const idProduct = product.id;
   const TotalPrice = Quantity * product.price;
-  
-  
 
 
 return ( 

@@ -40,6 +40,42 @@ export default function Cart() {
     return subtotal + deliveryFee + serviceFee;
   }, [subtotal, deliveryFee, serviceFee]);
 
+  const handleWhatsAppOrder = () => {
+    const whatsappNumber = "";
+
+    if (!whatsappNumber) {
+      return;
+    }
+
+    const orderLines = state.cart.map((item) => {
+      const product = products.find((p) => p.id === item.id);
+
+      if (!product) {
+        return null;
+      }
+
+      return [
+        `- ${product.title}`,
+        `  الكمية: ${item.count}`,
+        `  السعر: ${product.price} جنيه`,
+        `  الإجمالي: ${item.count * product.price} جنيه`,
+        `  صورة: ${product.image}`,
+      ].join("\n");
+    }).filter(Boolean);
+
+    const message = [
+      "السلام عليكم، أود إتمام طلب من سلة المشتريات:",
+      ...orderLines,
+      "",
+      `إجمالي الطلب: ${totalFinalPrice} جنيه`,
+      `رسوم التوصيل: ${deliveryFee} جنيه`,
+      `رسوم الخدمة: ${serviceFee} جنيه`,
+    ].join("\n");
+
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
+
   if (!cartContext) {
     return null;
   }
@@ -185,11 +221,13 @@ export default function Cart() {
                             <span className="font-bold text-emerald-700">{totalFinalPrice}</span>
                         </div>
                     </div>
-                    <Link href="/checkout" className="block w-full mt-6 rounded-md bg-emerald-800 px-6 py-2.5 sm:py-3 text-center text-sm sm:text-base font-semibold text-white transition hover:bg-emerald-700">
-                        
-                            إتمام الطلب
-                        
-                    </Link>
+                    <button
+                        className="block w-full mt-6 rounded-md bg-emerald-800 px-6 py-2.5 sm:py-3 text-center text-sm sm:text-base font-semibold text-white transition hover:bg-emerald-700"
+                        onClick={handleWhatsAppOrder}
+                        disabled={productCar.length === 0}
+                    >
+                        إتمام الطلب
+                    </button>
                 </div>
 
                 {/* Desktop Summary - Original Design */}
@@ -212,9 +250,13 @@ export default function Cart() {
                         <h2 className="text-green-500 font-bold text-2xl">{totalFinalPrice}</h2>
                     </div>
                     <div className="w-1/12 mx-auto">
-                        <Link href="/checkout" className="rounded-md bg-emerald-800 px-6 py-2.5 text-sm font-semibold text-white transition mb-5 hover:bg-emerald-700 ">
+                        <button
+                            className="rounded-md bg-emerald-800 px-6 py-2.5 text-sm font-semibold text-white transition mb-5 hover:bg-emerald-700"
+                            onClick={handleWhatsAppOrder}
+                            disabled={productCar.length === 0}
+                        >
                             اتمام الطلب
-                        </Link>
+                        </button>
                     </div>
                 </div>
             </div>

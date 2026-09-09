@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/Auth", "/Register", "/admin", "/profile", "/Cart"],
+      disallow: ["/Cart"],
     },
     sitemap: "https://supermarket-hazel.vercel.app/sitemap.xml",
   };

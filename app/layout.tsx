@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: "/images/logo.png",
+  },
   openGraph: {
     title: "فريدو | سوبر ماركت إلكتروني",
     description: "تسوق احتياجاتك اليومية من منتجات طازجة وألبان ومشروبات ومخبوزات عبر فريدو.",

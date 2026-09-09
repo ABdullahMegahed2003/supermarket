@@ -44,6 +44,7 @@ export default function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [heart, setHeart] = useState<boolean>(false);
   const cartContext = useContext(CartContext);
+  const cartItemsCount = cartContext?.state.cart.reduce((sum, item) => sum + item.count, 0) ?? 0;
 
   useEffect(() => {
     const updateHeart = () => {
@@ -103,16 +104,20 @@ export default function Nav() {
 
         {/* جهة اليسار: الأيقونات */}
         <div className="flex items-center gap-3 md:gap-4 order-3 md:mr-auto ">
-          <button
-            type="button"
-            className="p-2 hover:bg-gray-100 rounded-md transition"
-            aria-label="الانتقال إلى سلة التسوق"
-          >
-           <Link href="/Cart">
-           
-            <FiShoppingCart className="text-lg md:text-xl" />
-           </Link>
-          </button>
+          <Link href="/Cart" className="relative">
+            <button
+              type="button"
+              className="p-2 hover:bg-gray-100 rounded-md transition relative"
+              aria-label="الانتقال إلى سلة التسوق"
+            >
+              <FiShoppingCart className="text-lg md:text-xl" />
+              {cartItemsCount > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-700 px-1 text-[10px] font-bold text-white">
+                  {cartItemsCount}
+                </span>
+              )}
+            </button>
+          </Link>
           {heart ? 
           <Link href="/favorites">
               <button
@@ -135,12 +140,6 @@ export default function Nav() {
           </button>
             </Link>
             }
-<Link href="/Auth">
-          <div className="hidden sm:flex items-center gap-2 p-2 hover:bg-gray-100 rounded-md transition cursor-pointer">
-            <FiUser />
-            <h1 className="text-sm">تسجيل أو إنشاء حساب</h1>
-          </div>
-          </Link>
           <button
             type="button"
             onClick={() => setIsOpen((open) => !open)}

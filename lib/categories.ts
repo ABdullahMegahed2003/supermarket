@@ -19,14 +19,14 @@ export type CategoryItem = {
 const STORAGE_KEY = "store-categories";
 
 export const defaultCategories: CategoryItem[] = [
-  { id: 1, name: "اللحوم والدواجن", image: "https://images.unsplash.com/photo-1544025162-d76694265947" },
-  { id: 2, name: "الألبان والأجبان", image: "https://images.unsplash.com/photo-1563636619-e9143da7973b" },
-  { id: 3, name: "المخبوزات", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff" },
-  { id: 4, name: "المشروبات", image: "https://images.unsplash.com/photo-1564419320408-38e24e038739" },
-  { id: 5, name: "المواد الغذائية", image: "https://images.unsplash.com/photo-1542838132-92c53300491e" },
-  { id: 6, name: "المنظفات", image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952" },
-  { id: 7, name: "العناية الشخصية", image: "https://images.unsplash.com/photo-1556228720-195a672e8a03" },
-  { id: 8, name: "المجمدات", image: "https://images.unsplash.com/photo-1574484284002-952d924569dd" },
+  { id: 1, name: "اللحوم والدواجن", image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80" },
+  { id: 2, name: "الألبان والأجبان", image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&w=400&q=80" },
+  { id: 3, name: "المخبوزات", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80" },
+  { id: 4, name: "المشروبات", image: "https://images.unsplash.com/photo-1564419320408-38e24e038739?auto=format&fit=crop&w=400&q=80" },
+  { id: 5, name: "المواد الغذائية", image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=400&q=80" },
+  { id: 6, name: "المنظفات", image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=400&q=80" },
+  { id: 7, name: "العناية الشخصية", image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80" },
+  { id: 8, name: "المجمدات", image: "https://images.unsplash.com/photo-1574484284002-952d924569dd?auto=format&fit=crop&w=400&q=80" },
 ];
 
 const iconMap: Record<string, LucideIcon> = {
