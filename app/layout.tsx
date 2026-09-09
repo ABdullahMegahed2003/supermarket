@@ -30,7 +30,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: "/images/logo.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/images/logo.png",
   },
   openGraph: {
     title: "فريدو | سوبر ماركت إلكتروني",
@@ -38,11 +40,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ar_EG",
     siteName: "فريدو",
+    images: ["/images/logo.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "فريدو | سوبر ماركت إلكتروني",
     description: "أفضل تجربة تسوق إلكتروني للمنتجات اليومية في مصر.",
+    images: ["/images/logo.png"],
   },
 };
 
