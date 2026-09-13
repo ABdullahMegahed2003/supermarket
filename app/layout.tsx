@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import CartContext from "@/store/idproductsReducer";
 import Footer from "@/components/Footer/Footer";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://supermarket-hazel.vercel.app"),
@@ -69,6 +70,7 @@ export default function RootLayout({
       "rounded-xl border shadow-lg text-base",
   }}
 />
+        <Analytics />
 
         </CartContext>
       </body>
