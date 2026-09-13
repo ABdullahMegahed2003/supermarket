@@ -32,7 +32,7 @@ export default function HomePageClient() {
   return (
     <div className="overflow-x-hidden">
       <Nav />
-      <section className="mt-10" >
+      <section className="mt-0 lg:mt-10" >
         <HeroSection />
       </section>
 
