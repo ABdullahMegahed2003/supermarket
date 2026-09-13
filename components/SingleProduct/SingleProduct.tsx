@@ -1,6 +1,6 @@
 "use client";
 import { toast } from "sonner";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 
 import { FaArrowRight } from "react-icons/fa";
@@ -16,6 +16,7 @@ type Props = {
 export default function SingleProduct({ id }: Props) {
   const cartContext = useContext(CartContext);
   const router = useRouter();
+  const [addPulseKey, setAddPulseKey] = useState(0);
   const { Quantity, SetQuantity } = useProduct();
   const { dispatch } = cartContext ?? { dispatch: undefined };
   const safeDispatch = dispatch ?? (() => undefined);
@@ -83,8 +84,11 @@ return (
                     <HeartButton id={idProduct!}/>
         {/* button */}
         <div className="w-1/2">
-            <button className="w-full bg-green-400 rounded-2xl h-10 hover:bg-green-500 hover:font-bold" 
-            onClick={() => {
+            <button
+              key={addPulseKey}
+              className="add-to-cart-button w-full bg-green-400 rounded-2xl h-10 hover:bg-green-500 hover:font-bold"
+              onClick={() => {
+  setAddPulseKey((prev) => prev + 1);
   safeDispatch({
     type: "ADD_TO_CART",
     payload: {
@@ -93,10 +97,15 @@ return (
     },
   })
   SetQuantity(1);
-  toast.success("تم إضافة المنتج إلى السلة بنجاح");
-                      toast.success("تمت إضافة المنتج", {
-                    description: "يمكنك مراجعة السلة الآن",
-});
+  toast.success("تمت إضافة المنتج", {
+    description: "يمكنك مراجعة السلة الآن",
+    action: {
+      label: "السلة",
+      onClick: () => {
+        router.push("/Cart");
+      },
+    },
+  });
 }
 }>
                 أضف الى السلة

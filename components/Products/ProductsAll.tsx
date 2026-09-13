@@ -1,16 +1,21 @@
 "use client"
 
+import { toast } from "sonner";
 import Image from "next/image";
 import { products } from "@/data/products";
 import { useContext, useState, useMemo } from "react";
 import { CartContext } from "@/store/idproductsReducer";    
 import Link from "next/link";
 import { Search } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { triggerCartFly } from "@/lib/cartFly";
 
 export default function ProductsAll(){
  const cartContext = useContext(CartContext);
+ const router = useRouter();
  const [searchTerm, setSearchTerm] = useState("");
  const [selectedCategory, setSelectedCategory] = useState("الكل");
+ const [animatingProductId, setAnimatingProductId] = useState<number | null>(null);
 
  // استخراج الأقسام الفريدة من البيانات
  const categories = useMemo(() => {
@@ -31,6 +36,24 @@ export default function ProductsAll(){
   if(!cartContext){
         return null;
      }
+
+  const { dispatch } = cartContext;
+
+  const handleAddToCart = (productId: number, productImage: string, sourceElement: HTMLElement | null) => {
+    dispatch({ type: "ADD_TO_CART", payload: { id: productId, count: 1 } });
+    setAnimatingProductId(productId);
+    triggerCartFly(productImage, sourceElement);
+    window.setTimeout(() => setAnimatingProductId(null), 700);
+    toast.success("تمت إضافة المنتج", {
+      description: "يمكنك مراجعة السلة الآن",
+      action: {
+        label: "السلة",
+        onClick: () => {
+          router.push("/Cart");
+        },
+      },
+    });
+  };
 
     return(
  <section className="bg-slate-50 py-2">
@@ -79,7 +102,7 @@ export default function ProductsAll(){
           {filteredProducts.map((product) => (
             <article
               key={product.id}
-              className="overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+              className={`overflow-hidden rounded-[1.5rem] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl ${animatingProductId === product.id ? "product-fly-to-cart" : ""}`}
             >
               <div className="relative h-40 overflow-hidden bg-slate-100 sm:h-44">
                 <Image
@@ -116,19 +139,15 @@ export default function ProductsAll(){
                     >
                       التفاصيل
                     </Link>
-                    {/* <button 
-                      className="flex-[2] rounded-xl bg-emerald-700 py-2.5 text-xs font-bold text-white transition hover:bg-emerald-800" 
-                      onClick={() => {
-                    dispatch({type: "ADD_TO_CART",payload:product.id,});
-                      //toast.success("تم إضافة المنتج إلى السلة بنجاح");
-                      toast.success("تمت إضافة المنتج", {
-                    description: "يمكنك مراجعة السلة الآن",
-});
-                      
-                  }}>
-                    أضف إلى السلة
-                    
-                  </button> */}
+                    <button
+                      className="flex-[2] rounded-xl bg-emerald-700 py-2.5 text-xs font-bold text-white transition hover:bg-emerald-800"
+                      onClick={(event) => {
+                        const source = event.currentTarget.closest("article")?.querySelector("img") as HTMLElement | null;
+                        handleAddToCart(product.id, product.image, source);
+                      }}
+                    >
+                      أضف إلى السلة
+                    </button>
                   </div>
                 </div>
               </div>

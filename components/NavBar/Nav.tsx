@@ -43,8 +43,18 @@ export default function Nav() {
   
   const [isOpen, setIsOpen] = useState(false);
   const [heart, setHeart] = useState<boolean>(false);
+  const [isCartAnimating, setIsCartAnimating] = useState(false);
   const cartContext = useContext(CartContext);
   const cartItemsCount = cartContext?.state.cart.reduce((sum, item) => sum + item.count, 0) ?? 0;
+
+  useEffect(() => {
+    if (cartItemsCount === 0) return;
+
+    setIsCartAnimating(true);
+    const timer = window.setTimeout(() => setIsCartAnimating(false), 450);
+
+    return () => window.clearTimeout(timer);
+  }, [cartItemsCount]);
 
   useEffect(() => {
     const updateHeart = () => {
@@ -107,12 +117,12 @@ export default function Nav() {
           <Link href="/Cart" className="relative">
             <button
               type="button"
-              className="p-2 hover:bg-gray-100 rounded-md transition relative"
+              className={`relative rounded-md p-2 transition hover:bg-gray-100 ${isCartAnimating ? "cart-icon-bounce" : ""}`}
               aria-label="الانتقال إلى سلة التسوق"
             >
               <FiShoppingCart className="text-lg md:text-xl" />
               {cartItemsCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-700 px-1 text-[10px] font-bold text-white">
+                <span className={`cart-count-badge absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-emerald-700 px-1 text-[10px] font-bold text-white ${isCartAnimating ? "cart-count-badge" : ""}`}>
                   {cartItemsCount}
                 </span>
               )}

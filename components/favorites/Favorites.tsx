@@ -46,6 +46,7 @@ export default function Favorites() {
   const favoriteProducts = products.filter((product) => id.includes(product.id));
   const { QuantityAll, SetQuantityAll } = useProduct();
   const safeDispatch = dispatch ?? (() => undefined);
+  const [addPulseKey, setAddPulseKey] = useState(0);
 
   if (!cartContext) {
     return null;
@@ -144,8 +145,10 @@ export default function Favorites() {
 
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                       <button
-                        className="rounded-full bg-green-800 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700 md:px-7 md:text-base"
+                        key={addPulseKey}
+                        className="add-to-cart-button rounded-full bg-green-800 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700 md:px-7 md:text-base"
                         onClick={() => {
+                          setAddPulseKey((prev) => prev + 1);
                           safeDispatch({
                             type: "ADD_TO_CART",
                             payload: {
@@ -169,6 +172,12 @@ export default function Favorites() {
 
                           toast.success("تم إضافة المنتج إلى السلة بنجاح", {
                             description: "يمكنك مراجعة السلة الآن",
+                            action: {
+                              label: "السلة",
+                              onClick: () => {
+                                router.push("/Cart");
+                              },
+                            },
                           });
                         }}
                       >

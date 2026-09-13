@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Toaster } from "sonner";
 import CartContext from "@/store/idproductsReducer";
@@ -60,14 +61,14 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" className="h-full antialiased">
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 transition-colors">
         <CartContext>
-
+        <Analytics />
         {children}
         <Footer />
         <Toaster
   position="top-center"
   toastOptions={{
     className:
-      "rounded-xl border shadow-lg text-base",
+      "rounded-md border shadow-sm text-[10px] px-2.5 py-1.5 max-w-[240px]",
   }}
 />
         <Analytics />
